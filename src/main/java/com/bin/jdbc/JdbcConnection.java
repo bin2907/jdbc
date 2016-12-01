@@ -6,13 +6,15 @@ import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 
 /**
+ * This class demo a connection to h2database (in-memory)
+ *
  * Created by Bin on 12/1/2016.
  */
 public class JdbcConnection {
     public static void main(String[] args) {
         Connection conn = null;
         try {
-            // Registry h2database driver
+            // Registry driver
             Class.forName("org.h2.Driver");
 
             // Connect to database
