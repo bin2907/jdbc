@@ -1,5 +1,5 @@
 /* Copyright 2016 Bin */
-package com.bin.jdbc;
+package com.bin.jdbc.connection;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
