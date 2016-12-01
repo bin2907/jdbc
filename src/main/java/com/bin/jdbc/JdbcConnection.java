@@ -8,20 +8,19 @@ import java.sql.DriverManager;
 /**
  * Created by Bin on 12/1/2016.
  */
-public class BinConnection {
+public class JdbcConnection {
     public static void main(String[] args) {
         Connection conn = null;
         try {
             // Registry h2database driver
             Class.forName("org.h2.Driver");
 
-            // Connect to "bin-jdbc" database
+            // Connect to database
             conn = DriverManager.getConnection("jdbc:h2:mem:./src/main/resources/jdbc.db", "sa", "");
 
+            // Do a simple test to make sure that the connection is okay.
             DatabaseMetaData databaseMetaData = conn.getMetaData();
-            System.out.println("DatabaseProductVersion: "+databaseMetaData.getDatabaseProductVersion());
-
-            System.out.println("OK");
+            System.out.println("DatabaseProductVersion: " + databaseMetaData.getDatabaseProductVersion());
         } catch (Exception exc) {
             exc.printStackTrace();
         } finally {
