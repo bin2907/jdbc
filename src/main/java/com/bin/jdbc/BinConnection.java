@@ -1,19 +1,22 @@
+/* Copyright 2016 Bin */
 package com.bin.jdbc;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
+/**
+ * Created by Bin on 12/1/2016.
+ */
 public class BinConnection {
     public static void main(String[] args) {
         Connection conn = null;
         try {
-            // Registry driver
+            // Registry h2database driver
             Class.forName("org.h2.Driver");
 
             // Connect to "bin-jdbc" database
-            conn = DriverManager.getConnection("jdbc:h2:mem:./src/main/resources/bin-jdbc", "sa", "");
+            conn = DriverManager.getConnection("jdbc:h2:mem:./src/main/resources/jdbc.db", "sa", "");
 
             DatabaseMetaData databaseMetaData = conn.getMetaData();
             System.out.println("DatabaseProductVersion: "+databaseMetaData.getDatabaseProductVersion());
