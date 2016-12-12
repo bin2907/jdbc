@@ -1,5 +1,5 @@
 /* Copyright 2016 Bin */
-package com.bin.jdbc.statement;
+package com.bin.jdbc.insertion;
 
 import com.bin.jdbc.connection.ConnectionUtil;
 
@@ -8,31 +8,39 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Table creation demo.
+ * Data selection demo.
  *
  * Created by Bin on 12/1/2016.
  */
-public class TableCreation {
+public class DataSelection {
     public static void main(String[] args) {
         Connection conn = null;
-        Statement stmt = null;
+        Statement statmt = null;
 
         try {
             conn = ConnectionUtil.getConnection();
 
-            stmt = conn.createStatement();
+            statmt = conn.createStatement();
 
             String tableCreationSql = "create table `users` (`id` int, `name` varchar(255))";
-            boolean result = stmt.execute(tableCreationSql);
+            boolean result = statmt.execute(tableCreationSql);
             System.out.println(result); // false
+
+            String dataInsertionSql = "insert into `users` values(1, 'bin')";
+            result = statmt.execute(dataInsertionSql);
+            System.out.println(result); // false
+
+            String dataSelectionSql = "select * from `users`";
+
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (stmt != null) {
+            if (statmt != null) {
                 try {
-                    stmt.close();
+                    statmt.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
