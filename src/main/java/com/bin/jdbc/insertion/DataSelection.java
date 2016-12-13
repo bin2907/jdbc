@@ -4,6 +4,7 @@ package com.bin.jdbc.insertion;
 import com.bin.jdbc.connection.ConnectionUtil;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -31,8 +32,11 @@ public class DataSelection {
             System.out.println(result); // false
 
             String dataSelectionSql = "select * from `users`";
-
-
+            ResultSet rs = statmt.executeQuery(dataSelectionSql);
+            while (rs.next()) {
+                System.out.println(rs.getInt(1) + " : " + rs.getString(2));
+                System.out.println(rs.getInt("id") + " : " + rs.getString("name"));
+            }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
