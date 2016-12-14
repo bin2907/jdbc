@@ -14,11 +14,12 @@ import java.sql.SQLException;
 public class ConnectionUtil {
     private final static String DRIVER = "org.h2.Driver";
     private final static String URL = "jdbc:h2:mem:./src/main/resources/jdbc.db";
+    private final static String URL_EMBEDDED= "jdbc:h2:./src/main/resources/db/jdbc";
     private final static String USER = "sa";
     private final static String PWD = "";
 
     /**
-     * Get connection.
+     * Get connection using memory database.
      *
      * @return Connection
      */
@@ -28,6 +29,19 @@ public class ConnectionUtil {
 
         // Return new connection
         return DriverManager.getConnection(URL, USER, PWD);
+    }
+
+    /**
+     * Get connection.
+     *
+     * @return Connection
+     */
+    public static Connection getConnectionEmbedded() throws ClassNotFoundException, SQLException{
+        // Registry driver
+        Class.forName(DRIVER);
+
+        // Return new connection
+        return DriverManager.getConnection(URL_EMBEDDED, USER, PWD);
     }
 
     public static void main(String[] args) {
