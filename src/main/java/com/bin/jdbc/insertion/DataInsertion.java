@@ -13,7 +13,7 @@ import java.sql.Statement;
  *
  * Created by Bin on 12/1/2016.
  */
-public class DataSelection {
+public class DataInsertion {
     public static void main(String[] args) {
         Connection conn = null;
         Statement statmt = null;
@@ -31,12 +31,6 @@ public class DataSelection {
             result = statmt.execute(dataInsertionSql);
             System.out.println(result); // false
 
-            String dataSelectionSql = "select * from `users`";
-            ResultSet rs = statmt.executeQuery(dataSelectionSql);
-            while (rs.next()) {
-                System.out.println(rs.getInt(1) + " : " + rs.getString(2));
-                System.out.println(rs.getInt("id") + " : " + rs.getString("name"));
-            }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
